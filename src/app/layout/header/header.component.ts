@@ -1,119 +1,138 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { AuthService } from '../../core/services/auth.service';
-import { CartService } from '../../core/services/cart.service';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CartService } from '../../core/services/cart.service'; 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   template: `
-    <header class="sticky top-0 z-50 bg-white shadow-md font-sans">
-      <div class="bg-primary/10 text-center py-2 text-xs md:text-sm text-dark font-medium">
-        <p>🌿 Envío gratis > $500 MXN | 🚚 Recoge en tienda sin costo</p>
-      </div>
+    <!-- Barra de Promoción -->
+    <div class="bg-gray-50 text-[11px] md:text-xs text-center py-2 text-gray-500 font-medium tracking-wide border-b border-gray-100">
+      🌿 Envío gratis > $500 MXN | 🚚 Recoge en tienda sin costo
+    </div>
 
-      <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between h-20">
+    <!-- Header Principal -->
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Sección Superior: Logo, Buscador, Acciones -->
+        <div class="flex items-center justify-between h-20 gap-4 md:gap-8">
           
-          <a routerLink="/" class="flex items-center gap-2 group">
-            <i class="fas fa-leaf text-primary text-3xl group-hover:rotate-12 transition-transform"></i>
+          <!-- Logo -->
+          <a routerLink="/" class="flex items-center gap-2.5 flex-shrink-0 group">
+            <i class="fas fa-leaf text-3xl text-primary group-hover:scale-110 transition-transform duration-300"></i>
             <span class="text-2xl font-bold text-dark tracking-tight">NaturVida</span>
           </a>
 
-          <div class="hidden md:block flex-1 max-w-lg mx-8">
-            <div class="relative group">
-              <input type="text" 
-                     placeholder="Buscar productos naturales..."
-                     class="w-full pl-12 pr-4 py-2.5 rounded-full border border-gray-200 bg-gray-50 focus:bg-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
-              <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary"></i>
-            </div>
+          <!-- Buscador (Visible en Desktop) -->
+          <div class="hidden md:flex flex-1 max-w-xl relative group">
+            <input type="text" 
+                   placeholder="Buscar productos naturales..." 
+                   class="w-full bg-gray-50 border border-gray-200 rounded-full py-2.5 pl-12 pr-4 text-sm text-gray-700 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all group-hover:bg-white group-hover:shadow-sm">
+            <i class="fas fa-search absolute left-4.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors"></i>
           </div>
 
+          <!-- Acciones -->
           <div class="flex items-center gap-4 md:gap-6">
             
-            <div class="relative group cursor-pointer">
-              <div class="flex items-center gap-2 text-dark hover:text-primary transition-colors py-2">
-                <i class="fas fa-user-circle text-2xl"></i>
-                <span class="hidden md:inline font-medium text-sm">
-                  {{ authService.currentUser()?.nombre || 'Mi Cuenta' }}
-                </span>
-                <i class="fas fa-chevron-down text-xs hidden md:block opacity-50"></i>
-              </div>
-              
-              <div class="absolute right-0 top-full pt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right z-50">
-                <div class="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
-                  <ng-container *ngIf="!authService.currentUser()">
-                    <div class="p-4 space-y-2">
-                      <a routerLink="/login" class="block w-full text-center bg-primary text-white py-2 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors">Iniciar Sesión</a>
-                      <a routerLink="/registro" class="block w-full text-center border border-gray-200 text-dark py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">Crear Cuenta</a>
-                    </div>
-                  </ng-container>
-                  
-                  <ng-container *ngIf="authService.currentUser()">
-                    <div class="py-2">
-                      <a routerLink="/perfil" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary/5 hover:text-primary">
-                        <i class="fas fa-id-card w-5"></i> Mi Perfil
-                      </a>
-                      <a routerLink="/mis-ordenes" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary/5 hover:text-primary">
-                        <i class="fas fa-box-open w-5"></i> Mis Pedidos
-                      </a>
-                      <div class="border-t border-gray-100 my-1"></div>
-                      <button (click)="authService.logout()" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">
-                        <i class="fas fa-sign-out-alt w-5"></i> Cerrar Sesión
-                      </button>
-                    </div>
-                  </ng-container>
-                </div>
-              </div>
+            <!-- Usuario -->
+            <div class="relative group cursor-pointer flex items-center gap-2 text-gray-500 hover:text-primary transition-colors">
+               <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                 <i class="far fa-user text-sm"></i>
+               </div>
+               <span class="text-sm font-bold hidden sm:block">Mi Cuenta</span>
+               <i class="fas fa-chevron-down text-[10px] opacity-50 hidden sm:block"></i>
+               
+               <!-- Dropdown Menú -->
+               <div class="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform origin-top-right z-50 overflow-hidden">
+                  <div class="py-1">
+                    <a routerLink="/login" class="block px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary font-medium">
+                      <i class="fas fa-sign-in-alt w-5 opacity-50"></i> Iniciar Sesión
+                    </a>
+                    <a routerLink="/registro" class="block px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary font-medium">
+                      <i class="fas fa-user-plus w-5 opacity-50"></i> Registrarse
+                    </a>
+                    <div class="h-px bg-gray-100 my-1"></div>
+                    <a routerLink="/admin/login" class="block px-4 py-2 text-xs text-gray-400 hover:text-dark hover:bg-gray-50">Acceso Admin</a>
+                    <a routerLink="/pos-login" class="block px-4 py-2 text-xs text-gray-400 hover:text-dark hover:bg-gray-50">Acceso Empleados</a>
+                  </div>
+               </div>
             </div>
 
-            <a routerLink="/carrito" class="relative group p-2">
-              <i class="fas fa-shopping-cart text-2xl text-dark group-hover:text-primary transition-colors"></i>
-              <span *ngIf="cartCount() > 0" 
-                    class="absolute top-0 right-0 bg-primary text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold border-2 border-white animate-pulse-once">
-                {{ cartCount() }}
-              </span>
+            <!-- Carrito -->
+            <a routerLink="/carrito" class="relative group text-gray-500 hover:text-primary transition-colors">
+              <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                 <i class="fas fa-shopping-cart text-sm"></i>
+              </div>
+              @if (cartCount() > 0) {
+                <span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white shadow-sm animate-bounce-in">
+                  {{ cartCount() }}
+                </span>
+              }
             </a>
 
-            <button class="md:hidden text-dark text-2xl">
-              <i class="fas fa-bars"></i>
+            <!-- Menu Móvil Toggle -->
+            <button class="md:hidden w-8 h-8 flex items-center justify-center text-gray-500">
+                <i class="fas fa-bars text-xl"></i>
             </button>
+
           </div>
         </div>
-      </div>
 
-      <nav class="hidden md:block bg-white border-t border-gray-100">
-        <div class="container mx-auto px-4">
-          <ul class="flex items-center gap-8 text-sm font-medium text-gray-600">
-            <li>
-              <a routerLink="/productos" class="py-3 block hover:text-primary border-b-2 border-transparent hover:border-primary transition-all">
-                Ver Todo
-              </a>
-            </li>
-            <li *ngFor="let cat of categorias" class="group relative">
-              <a [routerLink]="['/productos', cat.id]" class="py-3 block hover:text-primary border-b-2 border-transparent hover:border-primary transition-all flex items-center gap-2">
-                <i [class]="cat.icono"></i> {{ cat.nombre }}
-              </a>
-              </li>
-          </ul>
-        </div>
-      </nav>
+        <nav class="hidden md:flex items-center justify-center gap-8 pb-0.5 overflow-x-auto scrollbar-hide">
+            
+            <a routerLink="/productos" 
+               routerLinkActive="text-primary font-bold border-b-2 border-primary"
+               [routerLinkActiveOptions]="{exact: true}"
+               class="py-3 text-sm font-medium text-gray-500 hover:text-primary transition-all whitespace-nowrap border-b-2 border-transparent">
+               Ver Todo
+            </a>
+
+            <a routerLink="/productos" [queryParams]="{cat: 'aceites'}"
+               routerLinkActive="text-primary font-bold border-b-2 border-primary"
+               class="py-3 text-sm font-medium text-gray-500 hover:text-primary transition-all whitespace-nowrap border-b-2 border-transparent flex items-center gap-2 group">
+               <i class="fas fa-tint text-xs opacity-50 group-hover:opacity-100 transition-opacity"></i> 
+               Aceites Esenciales
+            </a>
+
+            <a routerLink="/productos" [queryParams]="{cat: 'suplementos'}"
+               routerLinkActive="text-primary font-bold border-b-2 border-primary"
+               class="py-3 text-sm font-medium text-gray-500 hover:text-primary transition-all whitespace-nowrap border-b-2 border-transparent flex items-center gap-2 group">
+               <i class="fas fa-capsules text-xs opacity-50 group-hover:opacity-100 transition-opacity"></i> 
+               Suplementos
+            </a>
+
+            <a routerLink="/productos" [queryParams]="{cat: 'cosmetica'}"
+               routerLinkActive="text-primary font-bold border-b-2 border-primary"
+               class="py-3 text-sm font-medium text-gray-500 hover:text-primary transition-all whitespace-nowrap border-b-2 border-transparent flex items-center gap-2 group">
+               <i class="fas fa-spa text-xs opacity-50 group-hover:opacity-100 transition-opacity"></i> 
+               Cosmética Natural
+            </a>
+
+            <a routerLink="/productos" [queryParams]="{cat: 'superfoods'}"
+               routerLinkActive="text-primary font-bold border-b-2 border-primary"
+               class="py-3 text-sm font-medium text-gray-500 hover:text-primary transition-all whitespace-nowrap border-b-2 border-transparent flex items-center gap-2 group">
+               <i class="fas fa-apple-alt text-xs opacity-50 group-hover:opacity-100 transition-opacity"></i> 
+               Superfoods
+            </a>
+
+        </nav>
+
+      </div>
     </header>
-  `
+  `,
+  styles: [`
+    @keyframes bounceIn {
+      0% { transform: scale(0); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    .animate-bounce-in { animation: bounceIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+  `]
 })
 export class HeaderComponent {
-  authService = inject(AuthService);
-  cartService = inject(CartService);
-
-  cartCount = this.cartService.count;
-
-  // Datos mock para el menú (idealmente vendrían de un CategoryService)
-  categorias = [
-    { id: 'aceites', nombre: 'Aceites Esenciales', icono: 'fas fa-tint' },
-    { id: 'suplementos', nombre: 'Suplementos', icono: 'fas fa-pills' },
-    { id: 'cosmetica', nombre: 'Cosmética Natural', icono: 'fas fa-spa' },
-    { id: 'alimentos', nombre: 'Superfoods', icono: 'fas fa-apple-alt' }
-  ];
+  private cartService = inject(CartService); 
+    cartCount = this.cartService.count;
 }
