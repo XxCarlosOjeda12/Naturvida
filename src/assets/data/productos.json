@@ -1,0 +1,107 @@
+{
+  "productos": [
+    {
+      "id": "1",
+      "sku": "ACE-001",
+      "nombre": "Aceite Esencial de Lavanda",
+      "descripcion": "Aceite esencial 100% puro de lavanda orgánica, ideal para relajación y aromaterapia.",
+      "descripcionCorta": "Relajación y calma natural",
+      "precio": 250.00,
+      "imagen": "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=600&auto=format&fit=crop",
+      "categoria": "Aceites",
+      "stock": 20,
+      "etiquetas": ["relax", "orgánico"],
+      "destacado": true
+    },
+    {
+      "id": "2",
+      "sku": "SUP-002",
+      "nombre": "Cúrcuma en Polvo Orgánica",
+      "descripcion": "Raíz de cúrcuma molida de alta pureza, potente antiinflamatorio natural.",
+      "descripcionCorta": "Antiinflamatorio potente",
+      "precio": 120.50,
+      "precioDescuento": 99.00,
+      "imagen": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=600&auto=format&fit=crop",
+      "categoria": "Suplementos",
+      "stock": 15,
+      "etiquetas": ["superfood", "cocina"],
+      "nuevo": true
+    },
+    {
+      "id": "3",
+      "sku": "COS-003",
+      "nombre": "Jabón Artesanal de Avena",
+      "descripcion": "Jabón suave exfoliante hecho a mano con avena y miel para pieles sensibles.",
+      "descripcionCorta": "Cuidado suave para piel sensible",
+      "precio": 85.00,
+      "imagen": "https://plus.unsplash.com/premium_photo-1663852705829-aa8707495e2e?q=80&w=600&auto=format&fit=crop",
+      "categoria": "Cosmética",
+      "stock": 50,
+      "etiquetas": ["artesanal", "piel-sensible"]
+    },
+    {
+      "id": "4",
+      "sku": "TEA-004",
+      "nombre": "Té Verde Matcha Ceremonial",
+      "descripcion": "Matcha japonés de grado ceremonial, rico en antioxidantes.",
+      "descripcionCorta": "Energía y antioxidantes",
+      "precio": 320.00,
+      "imagen": "https://images.unsplash.com/photo-1582793988951-9aed5509eb97?q=80&w=600&auto=format&fit=crop",
+      "categoria": "Suplementos",
+      "stock": 30,
+      "etiquetas": ["detox", "energía"]
+    },
+    {
+      "id": "5",
+      "sku": "CRM-005",
+      "nombre": "Crema Facial de Caléndula",
+      "descripcion": "Hidratación profunda para pieles secas con extracto de caléndula.",
+      "descripcionCorta": "Hidratación regeneradora",
+      "precio": 180.00,
+      "precioDescuento": 150.00,
+      "imagen": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=600&auto=format&fit=crop",
+      "categoria": "Cosmética",
+      "stock": 12,
+      "etiquetas": ["piel-seca", "hidratante"]
+    },
+    {
+      "id": "6",
+      "sku": "ACE-006",
+      "nombre": "Aceite de Coco Orgánico",
+      "descripcion": "Aceite de coco virgen extra, ideal para cocina y cuidado personal.",
+      "descripcionCorta": "Versátil y nutritivo",
+      "precio": 195.00,
+      "imagen": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=600&auto=format&fit=crop",
+      "categoria": "Aceites",
+      "stock": 25,
+      "etiquetas": ["orgánico", "multiuso"],
+      "destacado": true
+    },
+    {
+      "id": "7",
+      "sku": "SUP-007",
+      "nombre": "Proteína Vegetal en Polvo",
+      "descripcion": "Mezcla de proteínas vegetales de guisante, arroz y cáñamo, sabor vainilla.",
+      "descripcionCorta": "Nutrición completa vegana",
+      "precio": 450.00,
+      "precioDescuento": 399.00,
+      "imagen": "https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?q=80&w=600&auto=format&fit=crop",
+      "categoria": "Suplementos",
+      "stock": 18,
+      "etiquetas": ["fitness", "vegano"],
+      "nuevo": true
+    },
+    {
+      "id": "8",
+      "sku": "COS-008",
+      "nombre": "Shampoo Sólido de Romero",
+      "descripcion": "Shampoo natural sin sulfatos, estimula el crecimiento capilar.",
+      "descripcionCorta": "Cabello fuerte y saludable",
+      "precio": 140.00,
+      "imagen": "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?q=80&w=600&auto=format&fit=crop",
+      "categoria": "Cosmética",
+      "stock": 40,
+      "etiquetas": ["cero-residuos", "cabello"]
+    }
+  ]
+}

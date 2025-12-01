@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos base limpios */
+body {
+    @apply bg-white text-dark font-sans antialiased;
+}
+
+/* Ajuste para que los iconos de FontAwesome se alineen bien */
+.fas, .far {
+    display: inline-block;
+}
+
+/*
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos específicos para impresión de tickets POS 
+@media print {
+  @page {
+    size: 80mm auto;  Ancho estándar de ticket térmico 
+    margin: 0;
+  }
+  body {
+    background-color: white;
+    width: 80mm;
+  }
+  /* Ocultar todo lo que no sea el ticket
+  body > *:not(.print\:block) {
+    display: none !important;
+  }
+}
+
+*/
